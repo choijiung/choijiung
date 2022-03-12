@@ -10,7 +10,7 @@ while True:
     print("1. 봉사시간 추가")
     print("2. 현재 봉사시간 조회")
     print("3. 프로그램 종료")
-    awnser = input("어느 것을 할 것인가요?")    
+    awnser = input("어느 것을 할 것인가요?")
     if awnser == "봉사시간 추가":
         with open(file_name, "rb") as r:
             retime = pickle.load(r)
