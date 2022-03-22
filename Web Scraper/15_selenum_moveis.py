@@ -45,5 +45,31 @@ while True:
     if curr_height == prev_height:
         break
     prev_height = curr_height
+
 print("스크롤 완료")
-time.sleep(20)
+time.sleep(5)
+
+from email import header
+from attr import attr
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://play.google.com/store/movies"
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36",
+    "Accept-Language":"ko-KR,ko"
+    }
+res = requests.get(url, headers=headers)
+res.raise_for_status()
+soup = BeautifulSoup(res.text, "lxml")
+
+movies = soup.find_all("div", attrs={"class" : "ULeU3b neq64b"})
+print(len(movies))
+
+# with open("Web Scraper/movie.html", "w", encoding="utf8") as w:
+#    w.write(soup.prettify())
+for movie in movies:
+    title = movie.find("div", attrs={"class":"Epkrse"}).get_text()
+    print(title)
+
+#어려워...
